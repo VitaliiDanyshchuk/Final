@@ -35,5 +35,18 @@ public class Main {
         companies.add(accounting);
 
 
+
+        // check on-top, on bottom, in the node,  out of chain)
+        System.out.println("Top-level company is -" + servise.getTopLevelParent(chief));
+        System.out.println("Top-level company is -" + servise.getTopLevelParent(design));
+        System.out.println("Top-level company is -" + servise.getTopLevelParent(developer));
+        System.out.println("Top-level company is -" + servise.getTopLevelParent(accounting));
+
+        System.out.println("Workers are:" + servise.getEmployeeCountForCompanyAndChildren(chief, companies));
+        System.out.println("Workers are:" + servise.getEmployeeCountForCompanyAndChildren(design, companies));
+        System.out.println("Workers are:" + servise.getEmployeeCountForCompanyAndChildren(developer, companies));
+        System.out.println("Workers are:" + servise.getEmployeeCountForCompanyAndChildren(accounting, companies));
+
+
     }
 }

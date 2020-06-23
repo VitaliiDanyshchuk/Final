@@ -14,23 +14,24 @@ import java.util.List;
 
         @Override
         public Company getTopLevelParent(Company child) {
-            Company topLevelCompany = child;
             while (child.getParent() != null) {
                 child = child.getParent();
-                topLevelCompany = child;
             }
 
-            return topLevelCompany;
+            return child;
         }
 
         @Override
         public int getEmployeeCountForCompanyAndChildren
-                (Company company, List<Company> companies)
-        {
-            return  company.getEmployeesCount() + companies.stream().mapToInt
-                    (Company::getEmployeesCount).sum();
+                (Company company, List<Company> companies) {
+            int employeeCount = company.getEmployeesCount();
+            for (int i = 0; i < companies.size(); i++) {
+                if (companies.get(i).getParent() == company) {
+                    employeeCount += getEmployeeCountForCompanyAndChildren(companies.get(i), companies);
+                }
+            }
+            return employeeCount;
         }
-
 
     }
 
